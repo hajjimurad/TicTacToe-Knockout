@@ -2,29 +2,44 @@
  * Created by murad on 08/10/15.
  */
 
-function Game(player1, player2, board) {
+define('game',['knockout','player','board'],function(ko,player,board){
 
-    var self = this;
-    this._player1 = player1;
-    this._player2 = player2;
-    this._board = board;
+    function Game(player1, player2, board) {
 
-    var step = 0;
+        var self = this;
+        this._player1 = player1;
+        this._player2 = player2;
+        this._board = board;
 
-    var checkInitialState = function() {
+        var step = 0;
 
-        var boardSize = self._board.getSize();
-        if(boardSize !== 4)
-            throw ("not supported size of the board: " + boardSize);
+        var checkInitialState = function() {
+
+            var boardSize = self._board.getSize();
+            if(boardSize !== 3)
+                throw ("not supported size of the board: " + boardSize);
+
+            self._board.setCell(1,1,1);
+            var cellState = self._board.getCell(1,1);
+            alert("cell state is: " + cellState);
+        };
+
+        this.next = function() {
+            step++;
+        };
+
+        this.getState = function() {
+            return step;
+        };
+
+        checkInitialState();
     };
 
-    this.next = function() {
-        step++;
-    }
+    //var gameModule = {
+    //    init: Game
+    //};
+    //
+    //return gameModule;
 
-    this.getState = function() {
-        return step;
-    }
-
-    checkInitialState();
-}
+    return Game;
+});

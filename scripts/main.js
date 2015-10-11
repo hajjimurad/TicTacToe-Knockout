@@ -1,8 +1,4 @@
-/**
- * Created by murad on 08/10/15.
- */
-
-(function(){
+requirejs(["board","game","player"],function(Board,Game,Player){
 
     var player1 = new Player(false);
     var player2 = new Player(true);
@@ -15,6 +11,6 @@
     game.next();
     var gameState = game.getState();
 
-    alert("state is:" + gameState);
-
-})();
+    alert("State is:" + gameState);
+}
+);
