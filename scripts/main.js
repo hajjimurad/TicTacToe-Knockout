@@ -1,5 +1,6 @@
 requirejs(["board", "game", "player"], function (Board, Game, Player) {
 
+
         var player1 = new Player(false);
         var player2 = new Player(true);
 

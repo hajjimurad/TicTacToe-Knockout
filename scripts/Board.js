@@ -2,7 +2,7 @@
  * Created by murad on 08/10/15.
  */
 
-define('board', ['knockout'], function (ko) {
+define('board', ['lib/knockout'], function (ko) {
 
     function Board(size) {
         this._size = size;

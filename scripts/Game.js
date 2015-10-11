@@ -2,7 +2,7 @@
  * Created by murad on 08/10/15.
  */
 
-define('game', ['knockout', 'player', 'board'], function (ko, player, board) {
+define('game', ['lib/knockout', 'player', 'board'], function () {
 
     function Game(player1, player2, board) {
 
