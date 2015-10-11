@@ -35,11 +35,5 @@ define('game',['knockout','player','board'],function(ko,player,board){
         checkInitialState();
     };
 
-    //var gameModule = {
-    //    init: Game
-    //};
-    //
-    //return gameModule;
-
     return Game;
 });

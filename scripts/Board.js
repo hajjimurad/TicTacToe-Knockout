@@ -49,11 +49,5 @@ define('board',['knockout'],function(ko){
         }
     };
 
-    //var boardModule = {
-    //    init : Board
-    //};
-    //
-    //return boardModule;
-
     return Board;
 });

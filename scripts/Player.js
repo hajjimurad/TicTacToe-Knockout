@@ -8,12 +8,6 @@ define('player',['knockout'],function(ko){
         this._isComputer = isComputer;
     };
 
-    //var playerModule = {
-    //    init: Player
-    //};
-    //
-    //return playerModule;
-
     return Player;
 })
 
