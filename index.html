@@ -4,12 +4,34 @@
     <meta charset="UTF-8">
     <title>TicTacToe</title>
     <script data-main="scripts/main" src="scripts/lib/require.js"></script>
+    <style>
+        .board
+        {
+            width: 320px;
+            margin: 0 auto;
+            font-size: 0;
+        }
+
+        .board .cell
+        {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            border: solid 1px #AAA;
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;;
+        }
+
+    </style>
 </head>
+
 <body>
     <h1>TicTacToe</h1>
-    <div class="boardContainer">
-        <div data-bind="foreach: cells">
-            <span data-bind="text: $data"> </span>
+    <h3>Step: <span data-bind="text: getState().step"></span></h3>
+    <div class="board" data-bind="foreach: getState().getCellsState()">
+        <div class="cell" data-bind="text: $data">
         </div>
     </div>
 </body>
