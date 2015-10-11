@@ -14,6 +14,6 @@ requirejs(["lib/knockout", "board", "game", "player"], function (ko, Board, Game
         game.stepCross(1, 0);
         game.next();
 
-        ko.applyBindings(boardClassic);
+        ko.applyBindings(game);
     }
 );
