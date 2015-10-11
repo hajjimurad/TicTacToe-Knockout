@@ -5,10 +5,15 @@
 define('board', ['lib/knockout'], function (ko) {
 
     function Board(size) {
+
+        self = this;
+
         this._size = size;
-        var cells = new Array(this._size * this._size);
+
+        this.cells = new Array(this._size * this._size);
+
         for (var i = 0; i < this._size * this._size; i++) {
-            cells[i] = ko.observable(0);
+            self.cells[i] = ko.observable(0);
         }
 
         this.getSize = function () {
@@ -27,25 +32,18 @@ define('board', ['lib/knockout'], function (ko) {
          */
         this.setCell = function (x, y, status) {
 
-            if (cells[(x - 1) * this._size + (y - 1)]() !== 0)
+            if (self.cells[(x) * this._size + (y)]() !== 0)
                 throw "Cell already specified exception";
 
-            cells[(x - 1) * this._size + (y - 1)](status);
+            self.cells[(x) * this._size + (y)](status);
         };
 
         /*
          * Get cell info
          */
         this.getCell = function (x, y) {
-            return cells[(x - 1) * this._size + (y - 1)]();
+            return self.cells[(x) * this._size + (y)]();
         };
-
-        /*
-         * Array of cells
-         */
-        this.getBoardInfo = function () {
-            return cells;
-        }
     };
 
     return Board;

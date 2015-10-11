@@ -18,9 +18,14 @@ define('game', ['lib/knockout', 'player', 'board'], function () {
             var boardSize = self._board.getSize();
             if (boardSize !== 3)
                 throw ("not supported size of the board: " + boardSize);
+        };
 
-            self._board.setCell(1, 1, 1);
-            var cellState = self._board.getCell(1, 1);
+        this.stepCross = function(x,y) {
+            self._board.setCell(x,y,1);
+        };
+
+        this.stepNill = function(x,y) {
+            self._board.setCell(x,y,2);
         };
 
         this.next = function () {
