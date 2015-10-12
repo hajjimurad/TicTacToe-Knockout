@@ -25,21 +25,11 @@ define('game', ['lib/knockout', 'player', 'board'], function (ko) {
         };
 
         this.showCellState = function(data) {
-            switch(data)
-            {
-                case 1:
-                    return "x";
-                case 2:
-                    return "o";
-                default:
-                    return null;
-            }
-        }
+            return self._board.showCellState(data);
+        };
 
-        this.cellClicked = function (cellState, event) {
-
-            var coords = getCoords(event.currentTarget.id);
-            if(self._board.setCell(coords.x,coords.y,self.step() % 2 + 1))
+        this.onCellClicked = function (cellState, event) {
+            if(self._board.onCellClicked(event.currentTarget.id, self.step() % 2 + 1))
                 self.next();
         };
 

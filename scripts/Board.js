@@ -16,6 +16,9 @@ define('board', ['lib/knockout'], function (ko) {
             cells[i] = ko.observable(0);
         }
 
+        /**
+         * Board size
+         */
         this.getSize = function () {
             return this._size;
         };
@@ -27,8 +30,8 @@ define('board', ['lib/knockout'], function (ko) {
             return this.getCell(x, y) === undefined;
         };
 
-        /*
-         * Sets info to cell
+        /**
+         * Set cell status
          */
         this.setCell = function (x, y, status) {
 
@@ -39,24 +42,55 @@ define('board', ['lib/knockout'], function (ko) {
             return true;
         };
 
-        /*
+        /**
          * Get cell info
          */
         this.getCell = function (x, y) {
             return cells[(x) * this._size + (y)]();
         };
 
-        this.getCellsState = function() {
+        this.getCellsState = function () {
             return cells;
         };
 
-        this.getCoords = function(cellNumber) {
+        /**
+         * Returns the cell symbol according to data
+         */
+        this.showCellState = function (state) {
 
-            var yCoord = cellNumber / this._size;
+            var result;
+            switch (state) {
+                case 1:
+                    result = "x";
+                    break;
+                case 2:
+                    result = "o";
+                    break;
+                default:
+                    result = null;
+                    break;
+            }
+            return result;
+        };
+
+        /**
+         * Callback for clicking cells
+         */
+        this.onCellClicked = function (number, state) {
+            var coords = self.getCoords(number);
+            return self.setCell(coords.x, coords.y, state);
+        }
+
+        /**
+         * Get cell coords by number
+         */
+        this.getCoords = function (cellNumber) {
+
+            var yCoord = (cellNumber) % this._size;
 
             return {
-                x : (cellNumber - yCoord) / this._size,
-                y : yCoord
+                x: (cellNumber - yCoord) / this._size,
+                y: yCoord
             };
         }
     };
