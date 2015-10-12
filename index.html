@@ -5,15 +5,13 @@
     <title>TicTacToe</title>
     <script data-main="scripts/main" src="scripts/lib/require.js"></script>
     <style>
-        .board
-        {
+        .board {
             width: 320px;
             margin: 0 auto;
             font-size: 0;
         }
 
-        .board .cell
-        {
+        .board .cell {
             width: 100px;
             height: 100px;
             display: inline-block;
@@ -28,11 +26,13 @@
 </head>
 
 <body>
-    <h1>TicTacToe</h1>
-    <h3>Step: <span data-bind="text: getState().step"></span></h3>
-    <div class="board" data-bind="foreach: getState().getCellsState()">
-        <div class="cell" data-bind="text: $data">
-        </div>
+<h1>TicTacToe</h1>
+
+<h3>Step: <span data-bind="text: getState().step"></span></h3>
+
+<div class="board" data-bind="foreach: getState().getCellsState()">
+    <div class="cell" data-bind="text: $data">
     </div>
+</div>
 </body>
 </html>
