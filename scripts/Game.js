@@ -11,35 +11,31 @@ define('game', ['lib/knockout', 'player', 'board'], function (ko) {
         this._player2 = player2;
         this._board = board;
 
-        var step = ko.observable(0);
-
-        var checkInitialState = function () {
-
-            var boardSize = self._board.getSize();
-            if (boardSize !== 3)
-                throw ("not supported size of the board: " + boardSize);
-        };
-
-        this.stepCross = function (x, y) {
-            self._board.setCell(x, y, 1);
-        };
-
-        this.stepNill = function (x, y) {
-            self._board.setCell(x, y, 2);
-        };
+        self.step = ko.observable(0);
 
         this.next = function () {
-            step(step()+1);
+            self.step(self.step() + 1);
         };
 
         this.getState = function () {
             return {
                 getCellsState: this._board.getCellsState,
-                step: step
+                step: self.step
             };
         };
 
-        checkInitialState();
+        this.showCellState = function(data) {
+            return self._board.showCellState(data);
+        };
+
+        this.onCellClicked = function (cellState, event) {
+            if(self._board.onCellClicked(event.currentTarget.id, self.step() % 2 + 1))
+                self.next();
+        };
+
+        var getCoords = function(cellNumber) {
+            return self._board.getCoords(cellNumber);
+        };
     };
 
     return Game;

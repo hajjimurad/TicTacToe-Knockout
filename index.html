@@ -5,6 +5,9 @@
     <title>TicTacToe</title>
     <script data-main="scripts/main" src="scripts/lib/require.js"></script>
     <style>
+        body {
+            font-family: Tahoma;
+        }
         .board {
             width: 320px;
             margin: 0 auto;
@@ -16,23 +19,22 @@
             height: 100px;
             display: inline-block;
             border: solid 1px #AAA;
-            font-size: 48px;
-            font-weight: bold;
+            font-size: 80px;
             text-align: center;
-            vertical-align: middle;;
+            vertical-align: bottom;
+            line-height: 80px;
         }
 
     </style>
 </head>
 
 <body>
-<h1>TicTacToe</h1>
+<h1>TicTacToe Clean</h1>
 
 <h3>Step: <span data-bind="text: getState().step"></span></h3>
 
 <div class="board" data-bind="foreach: getState().getCellsState()">
-    <div class="cell" data-bind="text: $data">
-    </div>
+    <div class="cell" data-bind="attr: {id: $index}, text: $parent.showCellState($data), click: $parent.onCellClicked"></div>
 </div>
 </body>
 </html>
