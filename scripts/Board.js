@@ -45,7 +45,7 @@ define('board', ['lib/knockout'], function (ko) {
             return cells[(x) * this._size + (y)]();
         };
 
-        this.getCellsState = function() {
+        this.getCellsState = function () {
             return cells;
         }
     };
