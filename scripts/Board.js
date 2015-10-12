@@ -47,6 +47,16 @@ define('board', ['lib/knockout'], function (ko) {
 
         this.getCellsState = function() {
             return cells;
+        };
+
+        this.getCoords = function(cellNumber) {
+
+            var yCoord = cellNumber / this._size;
+
+            return {
+                x : (cellNumber - yCoord) / this._size,
+                y : yCoord
+            };
         }
     };
 

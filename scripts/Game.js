@@ -29,14 +29,27 @@ define('game', ['lib/knockout', 'player', 'board'], function (ko) {
         };
 
         this.next = function () {
-            step(step()+1);
+            step(step() + 1);
         };
 
         this.getState = function () {
             return {
                 getCellsState: this._board.getCellsState,
-                step: step
+                step: step,
+                onCellClick: this.onCellClick
             };
+        };
+
+        this.cellClicked = function (cellState, event) {
+
+            var cellNumber = event.currentTarget.id;
+
+            var coords = getCoords(cellNumber);
+            self.stepCross(coords.x,coords.y);
+        };
+
+        var getCoords = function(cellNumber) {
+            return self._board.getCoords(cellNumber);
         };
 
         checkInitialState();
