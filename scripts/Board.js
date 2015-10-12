@@ -33,9 +33,10 @@ define('board', ['lib/knockout'], function (ko) {
         this.setCell = function (x, y, status) {
 
             if (cells[(x) * this._size + (y)]() !== 0)
-                throw "Cell already specified exception";
+                return false;
 
             cells[(x) * this._size + (y)](status);
+            return true;
         };
 
         /*
