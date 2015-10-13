@@ -4,13 +4,13 @@
 
 define('game', ['lib/knockout', 'player', 'board'], function (ko, Player, Board) {
 
-    function Game(player1, player2) {
+    function Game(boardSize, player1, player2) {
 
         var self = this;
 
         self.player1 = player1;
         self.player2 = player2;
-        self.board = new Board(3, self);
+        self.board = new Board(boardSize, self);
 
         self.step = ko.observable(0);
 
