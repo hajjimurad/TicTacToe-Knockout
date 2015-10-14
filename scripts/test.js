@@ -1,15 +1,72 @@
-requirejs(["board", "game", "player"], function (Board, Game, Player) {
+requirejs(["lib/knockout", "board", "game", "player", "cell"], function (ko, Board, Game, Player, Cell) {
 
+        function TestGame() {
 
-        var player1 = new Player(false);
-        var player2 = new Player(true);
+            this.game_corectData_zeroStep = function () {
 
-        var boardClassic = new Board(3);
+                var player1 = new Player(false);
+                var player2 = new Player(true);
 
-        var game = new Game(player1, player2, boardClassic);
-        game.next();
-        game.next();
-        game.next();
-        var gameState = game.getState();
+                var game = new Game(3, player1, player2);
+                var stepNumber = game.getState().step;
+                if (stepNumber() !== 0) {
+                    console.log("stepNumber: " + stepNumber());
+                    return false;
+                }
+
+                return true;
+            };
+
+            this.game_correctData_cellsCreated = function () {
+
+                var player1 = new Player(false);
+                var player2 = new Player(true);
+
+                var game = new Game(3, player1, player2);
+                var cells = game.getState().getCells();
+                if (cells == undefined)
+                    return false;
+
+                return true;
+            };
+
+            this.game_correctData_correctSize = function () {
+
+                var boardSize = 3;
+                var player1 = new Player(false);
+                var player2 = new Player(true);
+
+                var game = new Game(boardSize, player1, player2);
+                var cells = game.getState().getCells();
+
+                return cells.length === (boardSize * boardSize);
+            };
+
+            this.game_correctData_initialCellsStateEmpty = function () {
+
+                var boardSize = 3;
+                var player1 = new Player(false);
+                var player2 = new Player(true);
+
+                var game = new Game(boardSize, player1, player2);
+                var cells = game.getState().getCells();
+
+                for (var cell in cells) {
+                    if (cells[cell].getState() != 0)
+                        return false;
+                }
+                return true;
+            }
+            ;
+        };
+
+        // Running the test
+        var testRunner = new TestGame();
+        for (var testName in testRunner) {
+            if (typeof(testRunner[testName]) === "function") {
+                var testResult = testRunner[testName]();
+                console.log(testName + ": " + (testResult ? "ok" : "failed"));
+            }
+        }
     }
 );
