@@ -55,7 +55,7 @@ requirejs(["lib/knockout", "testRunner", "board", "game", "player", "cell"], fun
                     if (cells[cell].getState() != 0)
                         return false;
                 }
-                return true;
+                return false;
             };
         };
 
