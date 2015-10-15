@@ -1,6 +1,6 @@
-requirejs(["lib/knockout", "board", "game", "player", "cell"], function (ko, Board, Game, Player, Cell) {
+requirejs(["lib/knockout", "testRunner", "board", "game", "player", "cell"], function (ko, TestRunner, Board, Game, Player, Cell) {
 
-        function TestGame() {
+        function gameTestSet() {
 
             this.game_corectData_zeroStep = function () {
 
@@ -56,17 +56,15 @@ requirejs(["lib/knockout", "board", "game", "player", "cell"], function (ko, Boa
                         return false;
                 }
                 return true;
-            }
-            ;
+            };
         };
 
-        // Running the test
-        var testRunner = new TestGame();
-        for (var testName in testRunner) {
-            if (typeof(testRunner[testName]) === "function") {
-                var testResult = testRunner[testName]();
-                console.log(testName + ": " + (testResult ? "ok" : "failed"));
-            }
-        }
+
+        // Run set of tests
+        var testRunner = new TestRunner(new gameTestSet());
+        var testResults = testRunner.Run();
+
+        // Show results
+        ko.applyBindings(testResults);
     }
 );

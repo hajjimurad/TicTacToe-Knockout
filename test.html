@@ -6,6 +6,12 @@
     <script data-main="scripts/test" src="scripts/lib/require.js"></script>
 </head>
 <body>
-file for test
+<h1>Test results:</h1>
+<ul data-bind="foreach: $data">
+    <li>
+        <span data-bind="text: name"></span>:
+        <strong data-bind="text: result"></strong>
+    </li>
+</ul>
 </body>
 </html>
